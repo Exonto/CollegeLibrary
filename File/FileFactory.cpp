@@ -4,12 +4,12 @@
 #include <cstdio>
 #include <exception>
 #include "FileFactory.h"
-#include "File.h"
 #include "String.h"
+#include "Path.h"
 
 FileFactory::FileFactory() { }
 
-File FileFactory::createFile(const String& path)
+void FileFactory::createFile(const String& path)
 {
 	if (FileFactory::fileExists(path) == false)
 	{
@@ -20,17 +20,28 @@ File FileFactory::createFile(const String& path)
 		std::cerr << "Error creating file: File Already Exists - " << path << std::endl;
 		throw std::exception("Cannot Create Existing File");
 	}
-
-	return File(path);
 }
 
 void FileFactory::deleteFile(const String& path)
 {
-	bool succeeded = false;
 	if (FileFactory::fileExists(path))
 	{
 		std::remove(path.toStdString().c_str());
 	} else {
+		std::cerr << "Error deleting file: File Doesn't Exist - " << path << std::endl;
+		throw std::exception(("The file " + path.toStdString() + " does not exist").c_str());
+	}
+}
+
+void FileFactory::renameFile(const String& path, const String& name)
+{
+	if (FileFactory::fileExists(path))
+	{
+		String directory = Path::directoryOf(path);
+		std::rename(path.c_string(), 
+				   ((directory.length() > 0) ? (directory + "\\" + name) : (name)).c_string());
+	} else {
+		std::cerr << "Error renaming file: File Doesn't Exist - " << path << std::endl;
 		throw std::exception(("The file " + path.toStdString() + " does not exist").c_str());
 	}
 }

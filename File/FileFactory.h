@@ -1,5 +1,4 @@
 #include "String.h"
-#include "File.h"
 
 #pragma once
 
@@ -9,12 +8,14 @@
 class FileFactory
 {
 public:
-	static File createFile(const String& path);
+	static void createFile(const String& path);
 	static void deleteFile(const String& path);
+	static void renameFile(const String& path, const String& name);
 
 	static bool fileExists(const String& path);
 
 private:
+
 	FileFactory();
 };
 

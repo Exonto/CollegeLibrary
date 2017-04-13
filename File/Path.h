@@ -1,5 +1,4 @@
 #include "String.h"
-#include "File.h"
 
 #pragma once
 
@@ -8,23 +7,14 @@
 
 class Path
 {
-
-
 public:
-	Path(const String& path);
-	~Path();
+	static String normalizePath(const String& path);
 
-	static String normalizeSlashes(const String& path);
-
-	bool isFile() const;
-	bool isDirectory() const;
-
-	String getRoot() const;
-	const String& getPath() const;
-	String toString() const;
+	static String getRoot(const String& path);
+	static String directoryOf(const String& path);
 
 private:
-	String path;
+	Path();
 };
 
 #endif

@@ -1,42 +1,21 @@
-#include <Windows.h>
+#include <vector>
 #include "Path.h"
 
-Path::Path(const String& path)
-{
-	this->path = Path::normalizeSlashes(path);
-}
+Path::Path() { }
 
-Path::~Path()
-{
-	
-}
-
-String Path::normalizeSlashes(const String& path)
+String Path::normalizePath(const String& path)
 {
 	return path.replaceAll("/", "\\");
 }
 
-bool Path::isFile() const
+String Path::getRoot(const String & path)
 {
-	return true;
+	return path.split("\\").back();
 }
 
-bool Path::isDirectory() const
+String Path::directoryOf(const String& path)
 {
-	return !this->isFile();
-}
+	std::vector<int> slashes = path.indexesOf("\\");
 
-String Path::getRoot() const
-{
-	return this->path.split("\\").back();
-}
-
-const String& Path::getPath() const
-{
-	return this->path;
-}
-
-String Path::toString() const
-{
-	return this->path;
+	return path.substring(0, (slashes.size() > 0) ? (path.indexesOf("\\").back()) : (0));
 }

@@ -19,15 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Directory.h" />
-    <ClInclude Include="File.h" />
     <ClInclude Include="FileFactory.h" />
     <ClInclude Include="Path.h" />
     <ClInclude Include="String.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Directory.cpp" />
-    <ClCompile Include="File.cpp" />
     <ClCompile Include="FileFactory.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Path.cpp" />

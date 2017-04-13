@@ -1,3 +1,7 @@
+# Tyler Custom
+*.db
+*.opendb
+
 # Prerequisites
 *.d
 
