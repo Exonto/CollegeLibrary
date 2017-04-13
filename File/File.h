@@ -2,10 +2,10 @@
 
 #pragma once
 
-#ifndef FILEFACTORY_H_
-#define FILEFACTORY_H_
+#ifndef FILE_H_
+#define FILE_H_
 
-class FileFactory
+class File
 {
 public:
 	static void createFile(const String& path);
@@ -16,7 +16,7 @@ public:
 
 private:
 
-	FileFactory();
+	File();
 };
 
 #endif

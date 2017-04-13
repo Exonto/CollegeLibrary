@@ -3,15 +3,15 @@
 #include <string>
 #include <cstdio>
 #include <exception>
-#include "FileFactory.h"
+#include "File.h"
 #include "String.h"
 #include "Path.h"
 
-FileFactory::FileFactory() { }
+File::File() { }
 
-void FileFactory::createFile(const String& path)
+void File::createFile(const String& path)
 {
-	if (FileFactory::fileExists(path) == false)
+	if (File::fileExists(path) == false)
 	{
 		std::filebuf buf;
 		buf.open(path.toStdString(), std::ios::out);
@@ -22,9 +22,9 @@ void FileFactory::createFile(const String& path)
 	}
 }
 
-void FileFactory::deleteFile(const String& path)
+void File::deleteFile(const String& path)
 {
-	if (FileFactory::fileExists(path))
+	if (File::fileExists(path))
 	{
 		std::remove(path.toStdString().c_str());
 	} else {
@@ -33,9 +33,9 @@ void FileFactory::deleteFile(const String& path)
 	}
 }
 
-void FileFactory::renameFile(const String& path, const String& name)
+void File::renameFile(const String& path, const String& name)
 {
-	if (FileFactory::fileExists(path))
+	if (File::fileExists(path))
 	{
 		String directory = Path::directoryOf(path);
 		std::rename(path.c_string(), 
@@ -46,7 +46,7 @@ void FileFactory::renameFile(const String& path, const String& name)
 	}
 }
 
-bool FileFactory::fileExists(const String& path)
+bool File::fileExists(const String& path)
 {
 	std::ifstream iStream(path.toStdString(), std::ios::in);
 

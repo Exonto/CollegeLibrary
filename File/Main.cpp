@@ -1,5 +1,5 @@
 #include <iostream>
-#include "FileFactory.h"
+#include "File.h"
 #include "Path.h"
 #include "String.h"
 
@@ -7,13 +7,13 @@ int main()
 {
 	char* c = "Hey.txt";
 
-	if (FileFactory::fileExists(c))
+	if (File::fileExists(c))
 	{
-		FileFactory::deleteFile(c);
+		File::deleteFile(c);
 	}
-	FileFactory::createFile("Hey.txt");
+	File::createFile("Hey.txt");
 
-	FileFactory::renameFile("Hey.txt", "Blah.txt");
+	File::renameFile("Hey.txt", "Blah.txt");
 
 	return 0;
 }
