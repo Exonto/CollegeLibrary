@@ -10,12 +10,12 @@ String Path::normalizePath(const String& path)
 
 String Path::getRoot(const String & path)
 {
-	return path.split("\\").back();
+	return Path::normalizePath(path).split("\\").back();
 }
 
 String Path::directoryOf(const String& path)
 {
-	std::vector<int> slashes = path.indexesOf("\\");
+	std::vector<int> slashes = Path::normalizePath(path).indexesOf("\\");
 
-	return path.substring(0, (slashes.size() > 0) ? (path.indexesOf("\\").back()) : (0));
+	return path.substring(0, (slashes.size() > 0) ? (slashes.back()) : (0));
 }
