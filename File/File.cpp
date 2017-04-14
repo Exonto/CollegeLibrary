@@ -53,4 +53,28 @@ bool File::fileExists(const String& path)
 	return iStream.good();
 }
 
+String File::getFile(const String& path)
+{
+    return Path::normalizePath(path).split("\\").back();
+}
+
+String File::getFileName(const String& path)
+{
+    return File::getFile(path).split(".").front();
+}
+
+String File::getExtension(const String& path)
+{
+    std::vector<String> pathSegments = File::getFileName(path).split(".");
+
+    // The file name, when split at '.' will have two parts
+    if (pathSegments.size() >= 2)
+    {
+        return pathSegments.back();
+    } else {
+        std::cerr << "The path provided does not have a valid extension: " << path << std::endl;
+        throw std::exception("Path has no valid extension");
+    }
+}
+
 
