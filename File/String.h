@@ -380,7 +380,7 @@ public:
 	* @param str The String acting as an input
 	* @return The input stream
 	*/
-	friend std::istream& operator >> (std::istream& is, String& str);
+	friend std::istream& operator>>(std::istream& is, String& str);
 
 private:
 	char* c_str; // Dynamically stores every character in the String

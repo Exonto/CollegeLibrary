@@ -22,6 +22,7 @@
     <ClInclude Include="File.h" />
     <ClInclude Include="Path.h" />
     <ClInclude Include="String.h" />
+    <ClInclude Include="_os.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="File.cpp" />
@@ -85,7 +86,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS;</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

@@ -11,6 +11,7 @@ class Path
 public:
 	static String normalizePath(const String& path);
 
+	static String getAbsolute(const String& path);
 	static String getRoot(const String& path);
 	static String directoryOf(const String& path);
 	static String getParentPath(const String& path);
