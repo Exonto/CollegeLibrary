@@ -132,11 +132,11 @@ public:
 	* In this case, startIndex is considered "inclusive" while endIndex is
 	* considered "exclusive". By inclusive, this means that the character at
 	* startIndex will be removed. By exclusive, this means that the character
-	* is not removed at endIndex but rather at the index occurring before
+	* is at endIndex is not removed but rather at the index occurring before
 	* endIndex.
 	*
 	* As a general rule, startIndex cannot be larger than endIndex.
-	* They may, however, be equivalent in size in which the String which is
+	* They may, however, be equivalent in size in which case the String being
 	* returned will have no characters removed.
 	*
 	* @param startIndex The starting index
@@ -237,6 +237,12 @@ public:
 	* @return A vector<String> which always contains exactly two elements
 	*/
 	std::vector<String> split(unsigned int idx) const;
+
+	const String splitRemove(const String& regex, unsigned int idx) const;
+
+	const String splitRemoveFront(const String& regex) const;
+
+	const String splitRemoveEnd(const String& regex) const;
 
 	/**
 	* Returns a new String which has been trimmed of extra whitespace on both

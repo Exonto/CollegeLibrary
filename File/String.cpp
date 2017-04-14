@@ -325,17 +325,22 @@ const String String::substring(size_t startIdx, size_t endIdx) const
 	// Error Handling
 	if (startIdx < 0 || startIdx > this->length())
 	{
-		std::cerr << "The starting index was out of bounds at: \'" <<
-			startIdx <<
-			"\'";
+		std::cerr << "The starting index was out of bounds at: \'" 
+				  << startIdx 
+				  << "\'"
+				  << " in substring"
+				  << std::endl;
 		return String("");
 	} else if (endIdx < 0 || endIdx > this->length()) {
-		std::cerr << "The ending index was out of bounds at: \'" <<
-			endIdx <<
-			"\'";
+		std::cerr << "The ending index was out of bounds at: \'"
+				  << startIdx
+				  << "\'"
+				  << " in substring"
+				  << std::endl;
 		return String("");
 	} else if (startIdx > endIdx) {
-		std::cerr << "The starting index is larger than the ending index.";
+		std::cerr << "The starting index is larger than the ending index." 
+				  << std::endl;
 		return String("");
 	}
 
@@ -400,6 +405,43 @@ std::vector<String> String::split(unsigned int idx) const
 	split.push_back(this->substring(idx, this->length()));
 
 	return split;
+}
+
+const String String::splitRemove(const String& regex, unsigned int idx) const
+{
+	std::vector<int> indexes = this->indexesOf(regex);
+	
+	// Allows the beginning of the string to be removed
+	indexes.insert(indexes.begin(), 0);
+
+	// Prevents out of bounds index
+	if (idx >= indexes.size() || idx < 0)
+	{
+		std::cerr << "The index " 
+				  << idx 
+				  << " is out of bounds of indexes with size " 
+				  << indexes.size() 
+				  << " in splitRemove" << std::endl;
+
+		throw std::exception("Index out of bounds");
+	}
+
+	int regexStartIdx = indexes.at(idx);
+
+	int regexEndIdx = ((idx == indexes.size() - 1) ? 
+					   (this->length()) : (indexes.at(idx + 1)));
+
+	return this->removeAll(regexStartIdx, regexEndIdx);
+}
+
+const String String::splitRemoveFront(const String & regex) const
+{
+	return this->splitRemove(regex, 0);
+}
+
+const String String::splitRemoveEnd(const String& regex) const
+{
+	return this->splitRemove(regex, this->split(regex).size() - 1);
 }
 
 const String String::trim() const

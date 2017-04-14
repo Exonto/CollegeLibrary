@@ -15,14 +15,18 @@ String Path::getRoot(const String& path)
 
 String Path::directoryOf(const String& path)
 {
-	std::vector<int> directories = Path::normalizePath(path).indexesOf("\\");
+	String nPath = Path::normalizePath(path);
 
-	return path.substring(0, (directories.size() > 0) ? (path.indexesOf("\\").back()) : (0));
+	std::vector<int> slashes = nPath.indexesOf("\\");
+
+	return nPath.substring(0, (slashes.size() > 0) ? (nPath.indexesOf("\\").back()) : (0));
 }
 
 String Path::getParentPath(const String& path)
 {
-	return String();
+	String nPath = Path::normalizePath(path);
+
+	return nPath.splitRemoveEnd("\\");
 }
 
 std::vector<String> Path::getParentDirectories(const String& path)
@@ -30,5 +34,5 @@ std::vector<String> Path::getParentDirectories(const String& path)
 	std::vector<String> directories = Path::normalizePath(path).split("\\");
 	directories.pop_back();
 
-    return directories;
+	return directories;
 }
