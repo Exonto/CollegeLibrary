@@ -3,7 +3,6 @@
 #include "File.h"
 #include "Path.h"
 #include "String.h"
-#include "_os.h"
 
 int main()
 {
@@ -19,14 +18,17 @@ int main()
 
 	File::renameFile("Hey.txt", "Blah.txt");*/
 
+	//File::createFile("C:\\Users\\Tyler\\Desktop\\CFile\\story.txt");
 
-	String path = "../../Hey.txt";
-    String fileName = Path::getAbsolute(path);
-    /*std::vector<String> v = Path::getParentDirectories("C:/Woo/Random/Blah/Woo.lll");
+	String s = File::loadFile("C:\\Users\\Tyler\\Desktop\\CFile\\story.txt");
 
-    for (int i = 0; i < v.size(); i++) {
-        std::cout << v.at(i) << std::endl;
-    }*/
+	std::cout << s << std::endl;
+
+	/*std::vector<String> v = Path::getParentDirectories("C:/Woo/Random/Blah/Woo.lll");
+
+	for (int i = 0; i < v.size(); i++) {
+		std::cout << v.at(i) << std::endl;
+	}*/
 
 	//std::cout << OS << std::endl;
 

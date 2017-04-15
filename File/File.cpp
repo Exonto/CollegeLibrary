@@ -46,6 +46,66 @@ void File::renameFile(const String& path, const String& name)
 	}
 }
 
+long File::fileLength(const String & path)
+{
+	std::ifstream file(path.c_string(), std::ios::in);
+
+	file.seekg(0, file.end);
+	long length = file.tellg();
+
+	file.close();
+
+	return length;
+}
+
+String File::loadFile(const String& path)
+{
+	std::ifstream file(path.c_string(), std::ios::in);
+
+	String contents;
+
+	file >> contents;
+
+	return contents;
+}
+
+void File::overwriteText(const String& path, const String& text)
+{
+	std::ofstream file(path.c_string(), std::ios::out | std::ios_base::trunc);
+
+	file << text.c_string();
+
+	file.close();
+}
+
+void File::writeText(const String& path, const String& text)
+{
+	std::ofstream file(path.c_string(), std::ios::out | std::ios_base::app);
+
+	file << text.c_string();
+
+	file.close();
+}
+
+void File::writeTextNewLine(const String& path, const String& text)
+{
+	std::ofstream file(path.c_string(), std::ios::out | std::ios_base::app);
+
+	file << std::endl << text.c_string();
+
+	file.close();
+}
+
+void File::insertText(const String& path, const String& text, long putIdx)
+{
+	/*std::ofstream file(path.c_string(), std::ios::out);
+
+	file.seekp(0, file.beg);
+	file << text.c_string();
+
+	file.close();*/
+}
+
 bool File::fileExists(const String& path)
 {
 	std::ifstream iStream(path.toStdString(), std::ios::in);
@@ -55,26 +115,26 @@ bool File::fileExists(const String& path)
 
 String File::getFile(const String& path)
 {
-    return Path::normalizePath(path).split("\\").back();
+	return Path::normalizePath(path).split("\\").back();
 }
 
 String File::getFileName(const String& path)
 {
-    return File::getFile(path).split(".").front();
+	return File::getFile(path).split(".").front();
 }
 
 String File::getExtension(const String& path)
 {
-    std::vector<String> pathSegments = File::getFileName(path).split(".");
+	std::vector<String> pathSegments = File::getFileName(path).split(".");
 
-    // The file name, when split at '.' will have two parts
-    if (pathSegments.size() >= 2)
-    {
-        return pathSegments.back();
-    } else {
-        std::cerr << "The path provided does not have a valid extension: " << path << std::endl;
-        throw std::exception("Path has no valid extension");
-    }
+	// The file name, when split at '.' will have two parts
+	if (pathSegments.size() >= 2)
+	{
+		return pathSegments.back();
+	} else {
+		std::cerr << "The path provided does not have a valid extension: " << path << std::endl;
+		throw std::exception("Path has no valid extension");
+	}
 }
 
 

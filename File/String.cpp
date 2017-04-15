@@ -569,7 +569,7 @@ std::istream& operator >>(std::istream& is, String& str)
 {
 	is.clear(); // Removes any previous errors
 
-				// Reads in each character from the stream until some whitespace is found
+	// Reads in each character from the stream until some whitespace is found
 	std::vector<char> chars;
 
 	// Ignores all initial whitespace
@@ -579,7 +579,7 @@ std::istream& operator >>(std::istream& is, String& str)
 	}
 
 	// Continues storing each subsequent character until whitespace is found
-	while (is.good() && std::isspace(is.peek()) == false)
+	while (is.good())
 	{
 		chars.push_back(is.get());
 	}

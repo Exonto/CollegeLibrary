@@ -22,7 +22,6 @@
     <ClInclude Include="File.h" />
     <ClInclude Include="Path.h" />
     <ClInclude Include="String.h" />
-    <ClInclude Include="_os.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="File.cpp" />
